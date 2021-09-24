@@ -1,0 +1,81 @@
+#include <iostream>
+#include <Windows.h>
+#define _USE_MATH_DEFINES
+#include <cmath>
+#define M_PI 3.14159265358979323846
+using namespace std;
+
+int main()
+{
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+
+    while (true) {
+        double dR, r, l, h;
+        char R;
+        cout << "Объём и полная поверхность усечённого конуса" << endl;
+        cout << endl << "Введите радиус нижнего основания (R) : ";
+        char str[256], * p = str;
+        bool isd = true;
+        int digit;
+        std::cin >> str;
+        while (*p)
+            if (!isdigit(*p++))
+            {
+                isd = false;
+                break;
+            }
+        if (isd)
+            digit = atoi(str);
+        else
+        /*while (true) {
+            void proverka(char& R); {
+                while (!(cin >> R) || cin.get() != '\n')
+                {
+                    cout << endl << "Введите радиус нижнего основания (R) : ";
+                    cin.clear();
+                    cin.ignore(32767, '\n');
+                }
+            }
+            dR = atoi(R);
+            if (dR > 0) {
+                break;
+            }
+            R = "f";
+        } */
+        cout << endl << R;
+        cout << endl << "Введите радиус верхнего основания (r) : ";
+        void proverka(double& r); {
+            while (!(cin >> r) || cin.get() != '\n')
+            {
+                cout << endl << "Введите радиус верхнего основания (r) : ";
+                cin.clear();
+                cin.ignore(32767, '\n');
+            }
+        }
+        cout << endl << "Введите высоту конуса (h) : ";
+        void proverka(double& h); {
+            while (!(cin >> h) || cin.get() != '\n')
+            {
+                cout << endl << "Введите высоту конуса (h) : ";
+                cin.clear();
+                cin.ignore(32767, '\n');
+            }
+        }
+        cout << endl << "Введите образующую конуса (l) : ";
+        void proverka(double& l); {
+            while (!(cin >> l) || cin.get() != '\n')
+            {
+                cout << endl << "Введите образующую конуса (l) : ";
+                cin.clear();
+                cin.ignore(32767, '\n');
+            }
+        }
+        if (R <= 0 || r <= 0 || h <= 0 || l <= 0) {
+            cout << "Введены неверные данные." << endl << endl;
+            continue;
+        }
+        cout << endl << "Объём = " << (M_PI*h*((R*R) + (R*r) + (r*r))) / 3 << endl << endl;
+        cout << endl << "Полная поверхность = " << M_PI*(R*R + (R + r) * l + r*r) << endl << endl;
+    }
+}
