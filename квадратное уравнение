@@ -1,0 +1,65 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+int main()
+{
+    setlocale(LC_ALL, "Russian");
+    while (true) {
+        double a, b, c;
+        cout << "Решение уравнения ax^2 + bx + c = 0" << endl << endl << "Введите число a : ";
+        void proverka(double& a); {
+            while (!(cin >> a) || cin.get() != '\n')
+            {
+                cout << "Введите число a : ";
+                cin.clear();
+                cin.ignore(32767, '\n');
+            }
+        }
+        cout << "Введите число b : ";
+        void proverka(double& b); {
+            while (!(cin >> b) || cin.get() != '\n')
+            {
+                cout << "Введите число b : ";
+                cin.clear();
+                cin.ignore(32767, '\n');
+            }
+        }
+        cout << "Введите число c : ";
+        void proverka(double& c); {
+            while (!(cin >> c) || cin.get() != '\n')
+            {
+                cout << "Введите число c : ";
+                cin.clear();
+                cin.ignore(32767, '\n');
+            }
+        }
+        if (a == 0) {
+            if (b == 0 && c == 0) {
+                cout << endl << "Бесконечное множество решений" << endl << endl;
+            }
+            else if (b != 0 && c != 0) {
+                cout << endl << "x = " << (-c / b) << endl << endl;
+            }
+            else if (b == 0) {
+                cout << endl << "Нет решений" << endl << endl;
+            }
+            else if (c == 0) {
+                cout << endl << "x = 0" << endl << endl;
+            }
+        }
+        else {
+            double d = (b * b + (-4) * a * c);
+            if (d > 0) {
+                cout << endl << "x = " << (-b - sqrt(d)) / (2 * a) << endl;
+                cout << "x = " << (-b + sqrt(d)) / (2 * a) << endl << endl;
+            }
+            else if (d == 0) {
+                cout << endl << "x = " << -b / (2 * a) << endl << endl;
+            }
+            else {
+                cout << endl << "Нет корней" << endl << endl;
+            }
+        }
+    }
+}
