@@ -1,0 +1,58 @@
+#include <iostream>
+#include <string>
+#include <Windows.h>
+using namespace std;
+int main() {
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+    for (; ; ) {
+        string day;
+        string shtora;
+        string lamp;
+        string days[] = { "день", "День", "ночь", "вечер", "утро", "Ночь", "Вечер", "Утро" };
+        string shtoras[] = { "раздвинуты", "Раздвинуты", "Задвинуты", "задвинуты" };
+        string lamps[] = { "Включена", "включена", "Выключена", "выключена" };
+
+
+
+        while (true) {
+            cout << "Выберете состояние лампы: включена / выключена" << endl;
+            cin >> lamp;
+            if (lamp == lamps[0] || lamp == lamps[1] || lamp == lamps[2] || lamp == lamps[3]) {
+                if (lamp == lamps[0] || lamp == lamps[1]) {
+                    cout << endl << "Светло" << endl << endl;
+                }
+                else {
+                    while (true) {
+                        cout << "Выберете время суток: утро / день / вечер / ночь" << endl;
+                        cin >> day;
+                        if (day == days[0] || day == days[1] || day == days[2] || day == days[3] || day == days[4] || day == days[5] || day == days[6] || day == days[7]) {
+                            if (day == days[0] || day == days[1]) {
+                                while (true) {
+                                    cout << "Выберете состояние штор: раздвинуты / задвинуты" << endl;
+                                    cin >> shtora;
+                                    if (shtora == shtoras[0] || shtora == shtoras[1] || shtora == shtoras[2] || shtora == shtoras[3]) {
+                                        if (shtora == shtoras[0] || shtora == shtoras[1]) {
+                                            cout << endl << "Светло" << endl << endl;
+                                        }
+                                        else {
+                                            cout << endl << "Темно" << endl << endl;
+                                        }
+                                        break;
+                                    }
+                                    break;
+                                }
+                            }
+                            else {
+                                cout << endl << "Темно" << endl << endl;
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                    break;
+                }
+            }
+        }
+    }
+}
