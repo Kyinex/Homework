@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    setlocale(LC_ALL, "Russian");
+    while (true) {
+        double b;
+        double c;
+        cout << "Решение уравнения bx + c = 0" << endl << endl << "Введите число b : ";
+        void proverka(float& b); {
+            while (!(cin >> b) || cin.get() != '\n')
+            {
+                cout << "Введите число b : ";
+                cin.clear();
+                cin.ignore(32767, '\n');
+            }
+        }
+        cout << "Введите число c : ";
+        void proverka(float& c); {
+            while (!(cin >> c) || cin.get() != '\n')
+            {
+                cout << "Введите число c : ";
+                cin.clear();
+                cin.ignore(32767, '\n');
+            }
+        }
+
+        if (b == 0 && c == 0) {
+            cout << endl << "Бесконечное множество решений" << endl << endl;
+        }
+        else if (b != 0 && c != 0) {
+            cout << endl << "x = " << (-c / b) << endl << endl;
+        }
+        else if (b == 0) {
+            cout << endl << "Нет решений" << endl << endl;
+        }
+        else if (c == 0) {
+            cout << endl << "x = 0" << endl << endl;
+        }
+    }
+}
