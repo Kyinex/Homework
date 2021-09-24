@@ -11,44 +11,22 @@ int main()
     SetConsoleOutputCP(1251);
 
     while (true) {
-        double dR, r, l, h;
-        char R;
+        double R, r, l, h;
         cout << "Объём и полная поверхность усечённого конуса" << endl;
-        cout << endl << "Введите радиус нижнего основания (R) : ";
-        char str[256], * p = str;
-        bool isd = true;
-        int digit;
-        std::cin >> str;
-        while (*p)
-            if (!isdigit(*p++))
+        cout  << "Введите радиус нижнего основания (R) : ";
+        void proverka(char& R); {
+            while (!(cin >> R) || cin.get() != '\n')
             {
-                isd = false;
-                break;
+                cout << "Введите радиус нижнего основания (R) : ";
+                cin.clear();
+                cin.ignore(32767, '\n');
             }
-        if (isd)
-            digit = atoi(str);
-        else
-        /*while (true) {
-            void proverka(char& R); {
-                while (!(cin >> R) || cin.get() != '\n')
-                {
-                    cout << endl << "Введите радиус нижнего основания (R) : ";
-                    cin.clear();
-                    cin.ignore(32767, '\n');
-                }
-            }
-            dR = atoi(R);
-            if (dR > 0) {
-                break;
-            }
-            R = "f";
-        } */
-        cout << endl << R;
-        cout << endl << "Введите радиус верхнего основания (r) : ";
+        }
+        cout  << "Введите радиус верхнего основания (r) : ";
         void proverka(double& r); {
             while (!(cin >> r) || cin.get() != '\n')
             {
-                cout << endl << "Введите радиус верхнего основания (r) : ";
+                cout << "Введите радиус верхнего основания (r) : ";
                 cin.clear();
                 cin.ignore(32767, '\n');
             }
@@ -57,25 +35,25 @@ int main()
         void proverka(double& h); {
             while (!(cin >> h) || cin.get() != '\n')
             {
-                cout << endl << "Введите высоту конуса (h) : ";
+                cout  << "Введите высоту конуса (h) : ";
                 cin.clear();
                 cin.ignore(32767, '\n');
             }
         }
-        cout << endl << "Введите образующую конуса (l) : ";
+        cout  << "Введите образующую конуса (l) : ";
         void proverka(double& l); {
             while (!(cin >> l) || cin.get() != '\n')
             {
-                cout << endl << "Введите образующую конуса (l) : ";
+                cout << "Введите образующую конуса (l) : ";
                 cin.clear();
                 cin.ignore(32767, '\n');
             }
         }
         if (R <= 0 || r <= 0 || h <= 0 || l <= 0) {
-            cout << "Введены неверные данные." << endl << endl;
+            cout << endl << "Введены неверные данные." << endl << endl;
             continue;
         }
-        cout << endl << "Объём = " << (M_PI*h*((R*R) + (R*r) + (r*r))) / 3 << endl << endl;
-        cout << endl << "Полная поверхность = " << M_PI*(R*R + (R + r) * l + r*r) << endl << endl;
+        cout << endl << "Объём = " << (M_PI * h * ((R * R) + (R * r) + (r * r))) / 3 << endl;
+        cout << endl << "Полная поверхность = " << M_PI * (R * R + (R + r) * l + r * r) << endl << endl << endl;
     }
 }
