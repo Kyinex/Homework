@@ -1,0 +1,48 @@
+#include <iostream>
+#include <Windows.h>
+#include <cmath>
+using namespace std;
+
+int main()
+{
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+    while (true) {
+        double x;
+        double a;
+        cout << "Введите значение x: ";
+        void proverka(double& x); {
+            while (!(cin >> x) || cin.get() != '\n')
+            {
+                cout << "Введите значение x: ";
+                cin.clear();
+                cin.ignore(32767, '\n');
+            }
+        }
+        cout << "Введите значение a: ";
+        void proverka(double& a); {
+            while (!(cin >> a) || cin.get() != '\n')
+            {
+                cout << "Введите значение a: ";
+                cin.clear();
+                cin.ignore(32767, '\n');
+            }
+        }
+        if (abs(x) < 1) {
+            if (a == 0) {
+                cout << endl << "w = 0" << endl << endl;
+            }
+            else {
+                cout << endl << "w = " << a * log(abs(x)) << endl << endl;
+            }
+        }
+        else if (abs(x) >= 1) {
+            if (a - x * x < 0) {
+                cout << endl << "Нет решений" << endl << endl;
+            }
+            else {
+                cout << endl << "w = " << sqrt(a - x * x) << endl << endl;
+            }
+        }
+    }
+}
