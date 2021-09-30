@@ -1,0 +1,46 @@
+#include <iostream>
+#include <Windows.h>
+#include <cmath>
+using namespace std;
+
+int main()
+{
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+    while (true) {
+        double x, y, b;
+        cout << "Введите значение x : ";
+        void proverka(double& x); {
+            while (!(cin >> x) || cin.get() != '\n')
+            {
+                cout << "Введите значение x: ";
+                cin.clear();
+                cin.ignore(32767, '\n');
+            }
+        }
+        cout << "Введите значение y : ";
+        void proverka(double& y); {
+            while (!(cin >> y) || cin.get() != '\n')
+            {
+                cout << "Введите значение y: ";
+                cin.clear();
+                cin.ignore(32767, '\n');
+            }
+        }
+        cout << "Введите значение b : ";
+        void proverka(double& b); {
+            while (!(cin >> b) || cin.get() != '\n')
+            {
+                cout << "Введите значение b: ";
+                cin.clear();
+                cin.ignore(32767, '\n');
+            }
+        }
+        if (b - x < 0 || b - y <= 0) {
+            cout << endl << "Нет решений" << endl << endl;
+        }
+        else {
+            cout << endl << "z = " << log(b - y) * sqrt(b - x) << endl << endl;
+        }
+    }
+}
