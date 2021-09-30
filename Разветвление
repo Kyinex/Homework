@@ -29,7 +29,10 @@ int main()
             }
         }
         if (abs(x) < 1) {
-            if (a == 0) {
+            if (x == 0) {
+                cout << endl << "Нет решений" << endl << endl;
+            }
+            else if (x != 0 && a == 0) {
                 cout << endl << "w = 0" << endl << endl;
             }
             else {
