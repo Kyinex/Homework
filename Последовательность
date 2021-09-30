@@ -1,0 +1,28 @@
+#include <iostream>
+#include <Windows.h>
+using namespace std;
+
+int main()
+{
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+    while (true) {
+        int n;
+        cout << "Введите натуральное число: ";
+        void proverka(double& n); {
+            while (!(cin >> n) || cin.get() != '\n')
+            {
+                cout << "Введите натуральное число: ";
+                cin.clear();
+                cin.ignore(32767, '\n');
+            }
+        }
+        if (n <= 0) {
+            continue;
+        }
+        for (int count = 0; count < 10; ++count) {
+            cout << endl << "   " << n + count;
+        }
+        cout << endl << endl;
+    }
+}
