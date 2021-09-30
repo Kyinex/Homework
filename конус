@@ -1,7 +1,24 @@
 #include <iostream>
 #include <Windows.h>
+#include "Conus.h"
 using namespace std;
 
+void proverka(double& a1) {
+    while (!(cin >> a1) || cin.get() != '\n')
+    {
+        cout << "Введено не числовое значение. Попробуйте снова : ";
+        cin.clear();
+        cin.ignore(32767, '\n');
+    }
+}
+/*
+void proverka(double& a1) {
+    if (!(cin >> a1) || cin.get() != '\n')
+    {
+        cin.clear();
+        cin.ignore(9999999999, '\n');
+    }
+}*/
 int main()
 {
     double PI = 3.14;
@@ -9,43 +26,43 @@ int main()
     SetConsoleOutputCP(1251);
     cout << "Объем и полная поверзность усечённого конуса" << endl;
     while (true) {
-        double R, r, l, h;
-        cout << "Введите радиус нижнего основания (R) : ";
-        void proverka(char& R); {
-            while (!(cin >> R) || cin.get() != '\n')
-            {
-                cout << "Введите радиус нижнего основания (R) : ";
-                cin.clear();
-                cin.ignore(32767, '\n');
+        double R;
+        double r;
+        double h;
+        double l;
+        while (true) {
+            cout << "Введите радиус нижнего основания (R) : ";
+            proverka(R);
+            if (R > 0) {
+                break;
             }
+            cout << "Значение должно быть больше нуля" << endl;
         }
-        cout << "Введите радиус верхнего основания (r) : ";
-        void proverka(double& r); {
-            while (!(cin >> r) || cin.get() != '\n')
-            {
-                cout << "Введите радиус верхнего основания (r) : ";
-                cin.clear();
-                cin.ignore(32767, '\n');
+        while (true) {
+            cout << "Введите радиус верхнего основания (r) : ";
+            proverka(r);
+            if (r > 0) {
+                break;
             }
+            cout << "Значение должно быть больше нуля" << endl;
         }
-        cout << "Введите высоту конуса (h) : ";
-        void proverka(double& h); {
-            while (!(cin >> h) || cin.get() != '\n')
-            {
-                cout << "Введите высоту конуса (h) : ";
-                cin.clear();
-                cin.ignore(32767, '\n');
+        while (true) {
+            cout << "Введите образующую конуса (l) : ";
+            proverka(l);
+            if (l > 0) {
+                break;
             }
+            cout << "Значение должно быть больше нуля" << endl;
         }
-        cout << "Введите образующую конуса (l) : ";
-        void proverka(double& l); {
-            while (!(cin >> l) || cin.get() != '\n')
-            {
-                cout << "Введите образующую конуса (l) : ";
-                cin.clear();
-                cin.ignore(32767, '\n');
+        while (true) {
+            cout << "Введите высоту конуса (h) : ";
+            proverka(h);
+            if (h > 0) {
+                break;
             }
+            cout << "Значение должно быть больше нуля" << endl;
         }
+
         if (R <= 0 || r <= 0 || h <= 0 || l <= 0) {
             cout << endl << "Введены неверные данные. Повторный ввод" << endl << endl;
             continue;
