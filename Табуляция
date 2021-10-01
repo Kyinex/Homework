@@ -10,11 +10,11 @@ int main()
     {
         if (x == 1)
         {
-            cout << "Для x = 1 " << " решений нет" << endl;
+            cout << "Для x = 1 " << endl  << " решений нет" << endl;
         }
         else
         {
-            cout << "Для x = " << x < " y = " << (x*x-2*x+2)/(x-1) << endl;
+            cout << "Для x = " << x << endl << " y = " << (x*x-2*x+2)/(x-1) << endl;
         }
-    } 
+    }
 }
