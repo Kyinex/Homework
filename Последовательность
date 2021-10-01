@@ -7,7 +7,7 @@ int main()
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
     while (true) {
-        int n;
+        double n;
         cout << "Введите натуральное число: ";
         void proverka(double& n); {
             while (!(cin >> n) || cin.get() != '\n')
@@ -17,11 +17,12 @@ int main()
                 cin.ignore(32767, '\n');
             }
         }
-        if (n <= 0) {
-            continue;
+        int n1 = (int)(n + 0.5);
+        if (n1 <= 0) {
+            n1 = 1;
         }
         for (int count = 0; count < 10; ++count) {
-            cout << endl << "\t" << n + count;
+            cout << endl << "\t" << n1 + count;
         }
         cout << endl << endl;
     }
