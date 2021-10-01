@@ -10,14 +10,7 @@ void proverka(double& a1) {
         cin.ignore(32767, '\n');
     }
 }
-/*
-void proverka(double& a1) {
-    if (!(cin >> a1) || cin.get() != '\n')
-    {
-        cin.clear();
-        cin.ignore(9999999999, '\n');
-    }
-}*/
+
 int main()
 {
     double PI = 3.14;
@@ -62,7 +55,7 @@ int main()
             cout << "Значение должно быть больше нуля" << endl;
         }
 
-        if (R <= 0 || r <= 0 || h <= 0 || l <= 0) {
+        if (R <= 0 || r <= 0 || h <= 0 || l <= 0 || R == r ) {
             cout << endl << "Введены неверные данные. Повторный ввод" << endl << endl;
             continue;
         }
