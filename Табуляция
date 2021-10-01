@@ -1,8 +1,17 @@
-For (x = - 4; x <= 4; x += 0.5 )
+#include <iostream>
+#include <Windows.h>
+using namespace std;
+
+int main()
+{
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+for (x = - 4; x <= 4; x += 0.5 )
 {
 if (x == 1)
 {
 cout << "Для x =" << x < << " решений нет" << endl;
 }
 cout << "Для x =" << x < " y = " << (x*x-2*x+2)/(x-1) << endl;
+}
 }
