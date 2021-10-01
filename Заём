@@ -1,0 +1,47 @@
+#include <iostream>
+#include <Windows.h>
+using namespace std;
+
+void proverka(double& a1) {
+    while (!(cin >> a1) || cin.get() != '\n')
+    {
+        cout << "Введите числовое значение: ";
+        cin.clear();
+        cin.ignore(32767, '\n');
+    }
+}
+
+int main()
+{
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+    double  s, n, p;
+    while (true) {
+        cout << "Размер займа : ";
+        proverka(s);
+        if (s > 0) {
+            break;
+        }
+        cout << "Введите положительное число" << endl;
+    }
+    while (true) {
+        cout << "Срок : ";
+        proverka(n);
+        if (n > 0) {
+            break;
+        }
+        cout << "Введите положительное число" << endl;
+    }
+    while (true) {
+        cout << "Процент : ";
+        proverka(p);
+        if (p > 0) {
+            break;
+        }
+        cout << "Введите положительное число" << endl;
+    }
+    if (p != 0) {
+        double r = p / 100;
+        cout << "Месячная выплата " << (s * r * (pow((1 + r), n)) / (12 * (pow((1 + r), n) - 1))) << endl;
+    }
+}
