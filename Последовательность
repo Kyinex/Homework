@@ -21,7 +21,7 @@ int main()
             continue;
         }
         for (int count = 0; count < 10; ++count) {
-            cout << endl << "   " << n + count;
+            cout << endl << "\t" << n + count;
         }
         cout << endl << endl;
     }
