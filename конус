@@ -1,6 +1,5 @@
 #include <iostream>
 #include <Windows.h>
-#include "Conus.h"
 using namespace std;
 
 void proverka(double& a1) {
