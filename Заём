@@ -17,7 +17,7 @@ int main()
     SetConsoleOutputCP(1251);
     double  s, n, p;
     while (true) {
-        cout << "Размер займа : ";
+        cout << "Размер займа в рублях: ";
         proverka(s);
         if (s > 0) {
             break;
@@ -40,8 +40,6 @@ int main()
         }
         cout << "Введите положительное число" << endl;
     }
-    if (p != 0) {
-        double r = p / 100;
-        cout << "Месячная выплата " << (s * r * (pow((1 + r), n)) / (12 * (pow((1 + r), n) - 1))) << endl;
-    }
+     double r = p / 100;
+     cout << "Месячная выплата " << (s * r * (pow((1 + r), n)) / (12 * (pow((1 + r), n) - 1))) << " рублей." << endl;
 }
