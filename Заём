@@ -5,7 +5,7 @@ using namespace std;
 void proverka(double& a1) {
     while (!(cin >> a1) || cin.get() != '\n')
     {
-        cout << "Введите числовое значение: ";
+        cout << "\tВведите числовое значение: ";
         cin.clear();
         cin.ignore(32767, '\n');
     }
@@ -18,7 +18,9 @@ int main()
 {
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
+    cout << "Задача \"Заём\". \n \n";
     zaem();
+    cout << "Задача \"Ссуда\". \n \n";
     ssuda();
 }
 
@@ -26,67 +28,68 @@ void zaem()
 {
     double  s, n, p;
     while (true) {
-        cout << "Размер займа в рублях: ";
+        cout << "\tРазмер займа в рублях: ";
         proverka(s);
         if (s > 0) {
             break;
         }
-        cout << "Введите положительное число" << endl;
+        cout << "\tВведите положительное число" << endl;
     }
     while (true) {
-        cout << "Срок : ";
+        cout << "\tСрок : ";
         proverka(n);
         if (n > 0) {
             break;
         }
-        cout << "Введите положительное число" << endl;
+        cout << "\tВведите положительное число" << endl;
     }
     while (true) {
-        cout << "Процент : ";
+        cout << "\tПроцент : ";
         proverka(p);
         if (p > 0) {
             break;
         }
-        cout << "Введите положительное число" << endl;
+        cout << "\tВведите положительное число" << endl;
     }
     double r = p / 100;
-    cout << "Месячная выплата " << (s * r * (pow((1 + r), n)) / (12 * (pow((1 + r), n) - 1))) << " рублей. \n \n";
+    cout << "\tМесячная выплата " << (s * r * (pow((1 + r), n)) / (12 * (pow((1 + r), n) - 1))) << " рублей. \n \n";
 }
 
 void ssuda()
 {
     double  s, n, m, p, r;
     while (true) {
-        cout << "Размер займа в рублях: ";
+        cout << "\tРазмер займа в рублях: ";
         proverka(s);
         if (s > 0) {
             break;
         }
-        cout << "Введите положительное число" << endl;
+        cout << "\tВведите положительное число" << endl;
     }
     while (true) {
-        cout << "Срок : ";
+        cout << "\tСрок : ";
         proverka(n);
         if (n > 0) {
             break;
         }
-        cout << "Введите положительное число" << endl;
+        cout << "\tВведите положительное число" << endl;
     }
     while (true) {
-        cout << "Месячная выплата : ";
+        cout << "\tМесячная выплата : ";
         proverka(m);
         if (m > 0) {
             break;
         }
-        cout << "Введите положительное число" << endl;
+        cout << "\tВведите положительное число" << endl;
     }
-    for (p = 0; p <= 100; p += 0.01)
+    for (p = 0; p <= 10000; p += 0.01)
     {
         r = p / 100;
         if (abs((m - ((s * r * pow(1 + r, n)) / (12 * (pow(1 + r, n) - 1))))) < 0.01)
         {
-            cout << "Процент : " << p << "%" << endl;
+            cout << "\tПроцент : " << p << "%" << endl;
             break;
         }
     }
+
 }
