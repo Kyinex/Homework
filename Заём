@@ -11,10 +11,19 @@ void proverka(double& a1) {
     }
 }
 
+void zaem();
+void ssuda();
+
 int main()
 {
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
+    zaem();
+    ssuda();
+}
+
+void zaem()
+{
     double  s, n, p;
     while (true) {
         cout << "Размер займа в рублях: ";
@@ -40,6 +49,44 @@ int main()
         }
         cout << "Введите положительное число" << endl;
     }
-     double r = p / 100;
-     cout << "Месячная выплата " << (s * r * (pow((1 + r), n)) / (12 * (pow((1 + r), n) - 1))) << " рублей." << endl;
+    double r = p / 100;
+    cout << "Месячная выплата " << (s * r * (pow((1 + r), n)) / (12 * (pow((1 + r), n) - 1))) << " рублей. \n \n";
+}
+
+void ssuda()
+{
+    double  s, n, m, p, r;
+    while (true) {
+        cout << "Размер займа в рублях: ";
+        proverka(s);
+        if (s > 0) {
+            break;
+        }
+        cout << "Введите положительное число" << endl;
+    }
+    while (true) {
+        cout << "Срок : ";
+        proverka(n);
+        if (n > 0) {
+            break;
+        }
+        cout << "Введите положительное число" << endl;
+    }
+    while (true) {
+        cout << "Месячная выплата : ";
+        proverka(m);
+        if (m > 0) {
+            break;
+        }
+        cout << "Введите положительное число" << endl;
+    }
+    for (p = 0; p <= 100; p += 0.01)
+    {
+        r = p / 100;
+        if (abs((m - ((s * r * pow(1 + r, n)) / (12 * (pow(1 + r, n) - 1))))) < 0.01)
+        {
+            cout << "Процент : " << p << "%" << endl;
+            break;
+        }
+    }
 }
