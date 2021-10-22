@@ -1,0 +1,49 @@
+#include <iostream>
+#include <Windows.h>
+#include <fstream>
+#include <string>
+using namespace std;
+string create() {
+    string name;
+    string s;
+    cout << "Название файла : ";
+    getline(cin, name);
+    name = name + ".txt";
+    cout << "Текст: ";
+    getline(cin, s);
+    ofstream fout(name);
+    fout << s;
+    fout.close();
+    ifstream fin(name);
+    if (!fin.is_open()) {
+        cout << "\n Не удалось открыть файл.";
+    }
+    else {
+        string stroka;
+        getline(fin, stroka);
+        fin.close();
+    }
+    return name;
+}
+int main()
+{
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+    char a;
+    string name = "test.txt";
+    //name = create(); //Убрать комментирование, если надо создать файл прямо в программе
+    ifstream file(name);
+    if (!file.is_open()) {
+        cout << "\n Не удалось открыть файл.";
+    }
+    else {
+        for (file >> a; !file.eof(); file >> a) {
+
+            if (isdigit((unsigned char)a)) {
+                cout << a << endl;
+            }
+        }
+        file.close();
+    }
+    system("pause");
+}
