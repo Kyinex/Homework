@@ -1,0 +1,30 @@
+#include <iostream>
+#include <string>
+#include <Windows.h>
+using namespace std;
+string stroka() {
+    string a;
+    cin >> a;
+    return a;
+}
+void main() {
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+    string s;
+    do {
+        cout << "Задайте строку из 30 символов:\n";
+        s = stroka();
+    } while (s.size() != 30);
+
+    for (int i = 0; i < s.size(); i++){
+        for (int i = 0; i < (s.size() - 1); i++){
+            if (int(s[i]) >= int(s[i + 1])){
+                char k = s[i];
+                s[i] = s[i + 1];
+                s[i + 1] = k;
+            }
+        }
+    }
+    for (char i = 0; i < 30; i++)
+        cout << s[i] << " ";
+}
