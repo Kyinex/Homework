@@ -3,21 +3,30 @@
 #include <fstream>
 #include <string>
 using namespace std;
-bool PrintFile(string filename);
 int main()
 {
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
     string name;
     string s;
+    char buff[100];
     cout << "Название файла : \t";
-    cin >> name;
+    getline(cin, name);
     name = name + ".txt";
     cout << "Текст: \t";
-    cin >> s;
+    getline(cin, s);
     ofstream fout(name);
     fout << s;
-    PrintFile(name);
+    fout.close();
+    ifstream fin(name);
+    if (!fin.is_open()) {
+        cout << "\n Не удалось открыть файл.";
+    }
+    else {
+        fin.getline(buff, 100);
+        fin.close();
+        cout << buff << endl;
+    }
     system("pause");
 
 }
