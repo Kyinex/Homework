@@ -1,0 +1,43 @@
+#include <iostream>
+#include <Windows.h>
+#include <fstream>
+#include <string>
+#include <sstream>
+using namespace std;
+
+int main()
+{
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+    string name;
+    string num[10];
+    cout << "Название файла : ";
+    getline(cin, name);
+    name = name + ".txt";
+    for (int i = 0; i < 10; ++i) {
+        cout << "Введите число " << i + 1 << ": ";
+        cin >> num[i];
+    }
+    ofstream fout(name);
+    for (int i = 0; i < 10; ++i) {
+        fout << num[i] << "\n";
+    }
+    fout.close();
+    ifstream fin(name);
+    if (!fin.is_open()) {
+        cout << "\n Не удалось открыть файл.";
+    }
+    else {
+        int sum = 0;
+        for (int t = 0; t < 10; ++t) {
+            string k;
+            getline(fin, k);
+            int i;
+            istringstream(k) >> i;
+            sum = sum + i;
+        }
+        fin.close();
+        cout << "\nСумма: " << sum;
+    }
+    
+}
