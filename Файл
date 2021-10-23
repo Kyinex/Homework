@@ -10,13 +10,23 @@ int main()
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
     string name;
-    string num[10];
+    double num[10];
     cout << "Название файла : ";
     getline(cin, name);
     name = name + ".txt";
     for (int i = 0; i < 10; ++i) {
         cout << "Введите число " << i + 1 << ": ";
-        cin >> num[i];
+        double tm;
+        void proverka(double& tm); {
+            while (!(cin >> tm) || cin.get() != '\n')
+            {
+                cout << "Введите число " << i + 1 << ": ";
+                cin.clear();
+                cin.ignore(32767, '\n');
+            }
+        }
+
+        num[i] = tm;
     }
     ofstream fout(name);
     for (int i = 0; i < 10; ++i) {
@@ -28,16 +38,15 @@ int main()
         cout << "\n Не удалось открыть файл.";
     }
     else {
-        int sum = 0;
+        double sum = 0;
         for (int t = 0; t < 10; ++t) {
             string k;
             getline(fin, k);
-            int i;
+            double i;
             istringstream(k) >> i;
             sum = sum + i;
         }
         fin.close();
         cout << "\nСумма: " << sum;
     }
-    
 }
