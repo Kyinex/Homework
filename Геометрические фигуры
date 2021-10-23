@@ -1,0 +1,45 @@
+#include <iostream>
+using namespace std;
+
+void rectangle(double a, double b) {
+    cout << "\nПлощадь прямоугольника равна: " << a * b << "\n__________________\n\n";
+}
+
+void triangle(double h, double o) {
+    cout << "\nПлощадь треугольника равна: " << (o / 2) * h << "\n__________________\n\n";
+}
+
+void circle(double R) {
+    double P = 3.14;
+    cout << "\nПлощадь круга равна: " << P*R*R << "\n__________________\n\n";
+}
+
+void prov(double& x) {
+    while (!(cin >> x) || cin.get() != '\n')
+    {
+        cout << "\tВвод: ";
+        cin.clear();
+        cin.ignore(32767, '\n');
+    }
+}
+
+int main()
+{
+    double a, b, h, o, R;
+    setlocale(LC_ALL, "Russian");
+    cout << "Площадь прямоугольника.\n\nВведите сторону a:\n\tВвод: ";
+    prov(a);
+    cout << "\nВведите сторону b:\n\tВвод: ";
+    prov(b);
+    rectangle(a, b);
+
+    cout << "Площадь треугольника.\n\nВведите основание:\n\tВвод: ";
+    prov(o);
+    cout << "\nВведите высоту:\n\tВвод: ";
+    prov(h);
+    triangle(h, o);
+
+    cout << "Площадь Круга.\n\nВведите радиус:\n\tВвод: ";
+    prov(R);
+    circle(R);
+}
