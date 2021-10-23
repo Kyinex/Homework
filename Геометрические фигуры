@@ -15,11 +15,17 @@ void circle(double R) {
 }
 
 void prov(double& x) {
-    while (!(cin >> x) || cin.get() != '\n')
-    {
-        cout << "\tВвод: ";
-        cin.clear();
-        cin.ignore(32767, '\n');
+    while (true) {
+        while (!(cin >> x) || cin.get() != '\n')
+        {
+            cout << "\tВвод: ";
+            cin.clear();
+            cin.ignore(99999, '\n');
+        }
+        if (x > 0) {
+            break;
+        }
+        cout << "\tВвод: ";   
     }
 }
 
@@ -27,6 +33,7 @@ int main()
 {
     double a, b, h, o, R;
     setlocale(LC_ALL, "Russian");
+
     cout << "Площадь прямоугольника.\n\nВведите сторону a:\n\tВвод: ";
     prov(a);
     cout << "\nВведите сторону b:\n\tВвод: ";
