@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+
+void znak(double a) {
+    if (a > 0) {
+        cout << "\nЗнак: 1\n";
+    }
+    else if (a == 0){
+        cout << "\nЗнак: 0\n";
+    }
+    else if (a < 0) {
+        cout << "\nЗнак: -1\n";
+    }
+}
+
+
+int main()
+{
+    while (true) {
+        setlocale(LC_ALL, "Russian");
+        cout << "Введите число: ";
+        double c;
+        void proverka(float& c); {
+            while (!(cin >> c) || cin.get() != '\n')
+            {
+                cout << "Введите число: ";
+                cin.clear();
+                cin.ignore(32767, '\n');
+            }
+        }
+        znak(c);
+        cout << "____________________________\n\n";
+    }
+}
