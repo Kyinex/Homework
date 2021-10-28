@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+
+void main()
+{
+    setlocale(LC_ALL, "Rus");
+    int k = 0;
+    for (int i = 0; i < 13; ++i) {
+        ++k;
+        if (i < 6) {
+            for (int i = 0; i < 8; ++i) {
+                cout << "* ";
+            }
+            if (k % 2 == 1) {
+                for (int i = 0; i < 30; ++i) {
+                    cout << "=";
+                }
+            }
+            else {
+                for (int i = 0; i < 30; ++i) {
+                    cout << "_";
+                }
+            }
+        }
+        else {
+            if (k % 2 == 1) {
+                for (int i = 0; i < 46; ++i) {
+                    cout << "=";
+                }
+            }
+            else {
+                for (int i = 0; i < 46; ++i) {
+                    cout << "_";
+                }
+            }
+        }
+        cout << endl;
+    }    
+}
