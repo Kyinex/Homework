@@ -1,6 +1,18 @@
 #include <iostream>
 using namespace std;
 
+void stripes(int x, int k){
+    if (k % 2 == 1) {
+        for (int i = 0; i < x; ++i) {
+            cout << "=";
+        }
+    }
+    else {
+        for (int i = 0; i < x; ++i) {
+            cout << "-";
+        }
+    }
+}
 void main()
 {
     setlocale(LC_ALL, "Rus");
@@ -11,28 +23,10 @@ void main()
             for (int i = 0; i < 8; ++i) {
                 cout << "* ";
             }
-            if (k % 2 == 1) {
-                for (int i = 0; i < 30; ++i) {
-                    cout << "=";
-                }
-            }
-            else {
-                for (int i = 0; i < 30; ++i) {
-                    cout << "_";
-                }
-            }
+            stripes(30, k);
         }
         else {
-            if (k % 2 == 1) {
-                for (int i = 0; i < 46; ++i) {
-                    cout << "=";
-                }
-            }
-            else {
-                for (int i = 0; i < 46; ++i) {
-                    cout << "_";
-                }
-            }
+            stripes(46, k);
         }
         cout << endl;
     }    
