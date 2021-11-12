@@ -9,10 +9,10 @@ int main()
     SetConsoleOutputCP(1251);
     string name;
     string s;
-    cout << "Название файла : \t";
+    cout << "Название файла : ";
     getline(cin, name);
     name = name + ".txt";
-    cout << "Текст: \t";
+    cout << "Текст: ";
     getline(cin, s);
     ofstream fout(name);
     fout << s;
@@ -22,10 +22,13 @@ int main()
         cout << "\n Не удалось открыть файл.";
     }
     else {
-        string stroka;
-        getline(fin, stroka);
+        while (!fin.eof()) {
+            string stroka;
+            getline(fin, stroka);
+            cout << stroka << endl;
+        }
         fin.close();
-        cout << stroka << endl;
+        
     }
     system("pause");
 
