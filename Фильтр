@@ -39,7 +39,6 @@ int main()
     }
     else {
         string b = "";
-        string last;
         string hold;
         for (file >> a; !file.eof(); file >> a) {
             hold += a;
