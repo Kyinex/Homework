@@ -25,22 +25,51 @@ string create() {
     }
     return name;
 }
+
 int main()
 {
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
     char a;
     string name = "test.txt";
-    //name = create(); //Убрать комментирование, если надо создать файл прямо в программе
+    name = create(); //Убрать комментирование, если надо создать файл прямо в программе
     ifstream file(name);
     if (!file.is_open()) {
         cout << "\n Не удалось открыть файл.";
     }
     else {
+        string b = "";
+        string last;
+        string hold;
         for (file >> a; !file.eof(); file >> a) {
-
-            if (isdigit((unsigned char)a)) {
-                cout << a << endl;
+            hold += a;
+        }
+        hold += "a";
+        for (int i = 0; i < size(hold) - 1; ++i) {
+            string k;
+            while (isdigit((unsigned char)hold[i])) {
+                b += hold[i];
+                if (i < size(hold)) {
+                    ++i;
+                }
+            }
+            k = hold[i];
+            if (i != 0) {
+                if (k == "." && isdigit((unsigned char)hold[i - 1]) && isdigit((unsigned char)hold[i + 1])) {
+                    b += hold[i];
+                    ++i;
+                    
+                    while (isdigit((unsigned char)hold[i])) {
+                        b += hold[i];
+                        if (i < size(hold)) {
+                            ++i;
+                        }
+                    }
+                }
+                if (b != "") {
+                    cout << stof(b) << endl;
+                }
+                b = "";
             }
         }
         file.close();
