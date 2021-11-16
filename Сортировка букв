@@ -21,13 +21,13 @@ void main() {
 
     for (int i = 0; i < s.size(); i++) {
         for (int i = 0; i < (s.size() - 1); i++) {
-            if (int(s[i]) >= int(s[i + 1])) {
+            if (int(s[i]) > int(s[i + 1])) {
                 char k = s[i];
                 s[i] = s[i + 1];
                 s[i + 1] = k;
             }
         }
     }
-    for (char i = 0; i < 30; i++)
+    for (int i = 0; i < 30; i++)
         cout << s[i] << " ";
 }
