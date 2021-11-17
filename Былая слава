@@ -4,12 +4,12 @@ using namespace std;
 void stripes(int x, int k){
     if (k % 2 == 1) {
         for (int i = 0; i < x; ++i) {
-            cout << "=";
+            cout << "|";
         }
     }
     else {
         for (int i = 0; i < x; ++i) {
-            cout << "-";
+            cout << " ";
         }
     }
 }
