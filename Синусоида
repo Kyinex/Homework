@@ -1,0 +1,43 @@
+#include <iostream>
+#include <string>
+#include <Windows.h>
+#include <math.h>
+
+using namespace std;
+
+
+int main(){
+	string m [31][31];
+	for (int i = 0; i < 31; i++) {
+		for (int j = 0; j < 31; j++) {
+			m[i][j] = " ";
+		}
+	}
+	for (int i = 0; i < 31; i++) {
+		m[15][i] = "-";
+	}
+	for (int i = 0; i < 31; i++) {
+		m[i][15] = "|";
+	}
+	m[15][15] = "+";
+	for (int i = 0; i < 31; i++) {
+		for (int k = 0; k < 2; k++) {
+			int j = abs(sin(i) * 10);
+			j /= 4;
+			if (sin(i) < 0) {
+				j += 15 + k;
+			}
+			else {
+				j = 15 - j - k;
+			}
+			m[j][i] = ".";
+		}
+	}
+	for (int i = 0; i < 31; i++) {
+		for (int j = 0; j < 31; j++) {
+			cout << m[i][j] << " ";
+		}
+		cout << "\n";
+	}
+  return 0;
+}
