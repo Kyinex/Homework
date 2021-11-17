@@ -38,7 +38,7 @@ int main()
         cout << "\n Не удалось открыть файл.";
     }
     else {
-        double sum = 0;
+        float sum = 0;
         for (int t = 0; t < 10; ++t) {
             string k;
             getline(fin, k);
