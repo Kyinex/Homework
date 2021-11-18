@@ -16,18 +16,18 @@ int main(){
 	for (int i = 0; i < 31; i++) {
 		m[i][25] = "|";
 	}
-	m[15][25] = "+";
+	m[15][25] = "О";
 	for (int i = 0; i < 51; i++) {
 		for (int k = 0; k < 1; k++) {
-			int j = abs(sin(i / 1.8) * 10);
-			j /= 3;
-			if (sin(i / 1.8) < 0) {
+			int j = abs(sin(i / 3.99) * 10);
+			//j /= 1;
+			if (sin(i / 3.99) < 0) {
 				j += 15 + k;
 			}
 			else {
 				j = 15 - j - k;
 			}
-			m[j][i] = ".";
+			m[j][i] = "O";
 
 		}
 	}
