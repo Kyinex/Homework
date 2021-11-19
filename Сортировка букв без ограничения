@@ -1,0 +1,32 @@
+#include <iostream>
+#include <string>
+#include <Windows.h>
+using namespace std;
+string stroka() {
+    string a;
+    getline(cin, a);
+    while (a.find(' ') != -1) {
+        a.erase(a.find(' '), 1);
+    }
+    return a;
+}
+void main() {
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+    string s;
+    cout << "Введите буквы: ";
+    s = stroka();
+
+    for (int i = 0; i < s.size(); i++) {
+        for (int i = 0; i < (s.size() - 1); i++) {
+            if (int(s[i]) > int(s[i + 1])) {
+                char k = s[i];
+                s[i] = s[i + 1];
+                s[i + 1] = k;
+            }
+        }
+    }
+    for (int i = 0; i < size(s); i++) {
+        cout << s[i] << " ";
+    }
+}
