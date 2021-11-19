@@ -39,10 +39,15 @@ int main()
     }
     else {
         string b = "";
-        string hold;
-        for (file >> a; !file.eof(); file >> a) {
-            hold += a;
+        string hold = "";
+        while (!file.eof()) {
+            string stroka;
+            getline(file, stroka);
+            hold += stroka;
+            hold += "a";
         }
+        
+        cout << hold << endl;
         hold += "a";
         for (int i = 0; i < size(hold) - 1; ++i) {
             string k;
@@ -57,7 +62,7 @@ int main()
                 if (k == "." && isdigit((unsigned char)hold[i - 1]) && isdigit((unsigned char)hold[i + 1])) {
                     b += hold[i];
                     ++i;
-                    
+
                     while (isdigit((unsigned char)hold[i])) {
                         b += hold[i];
                         if (i < size(hold)) {
