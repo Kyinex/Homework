@@ -1,0 +1,389 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+bool isfloat;
+char sign;
+bool errorss;
+double x10(string n, int os);
+double x10float(string n, int os);
+string fromdcdint(double dcd, int ns);
+string fromdcdfloat(double dcd, int ns);
+void error() {
+    cout << "\nОшибка. Неверно введена исходная система счисления\n\n";
+}
+
+void numcheck_i(int& b) {
+    string a;
+    for (int k = 0; k < 1; k++) {
+        getline(cin, a);
+        for (int i = 0; i < size(a); i++) {
+            if (!(isdigit((unsigned char)a[i]))) {
+                cout << "Введите числовое значение : ";
+                k--;
+                cin.clear();
+                break;
+            }
+        }
+    }
+    b = stoi(a);
+}
+void numcheck_s(string& a) {
+    for (int k = 0; k < 1; k++) {
+        getline(cin, a);
+        int dot = 0;
+        for (int i = 0; i < size(a); i++) {
+            if (a[i] == '.') {
+                dot++;
+            }
+            if (dot > 1) {
+                cout << "Введите числовое значение : ";
+                k--;
+                break;
+            }
+            if (!(isdigit((unsigned char)a[i]) || a[i] == '.' || a[i] == '-' || a[i] == 'A' || a[i] == 'B' || a[i] == 'C' || a[i] == 'D' || a[i] == 'E' || a[i] == 'F')) {
+                cout << "Введите числовое значение : ";
+                k--;
+                break;
+            }
+        }
+    }
+}
+
+void s() {
+    while (true) {
+        bool errorss = false;
+        sign = '\0';
+        isfloat = false;
+        system("cls");
+        cout.precision(11);
+        string num, n1, n2;
+        int os, ns, pos;
+        cout << "Введите исходное число : ";
+        numcheck_s(num);
+        cout << "\nВведите исходную систему счисления : ";
+        numcheck_i(os);
+        cout << "\nВведите систему счисления для перевода : ";
+        numcheck_i(ns);
+        if (num[0] == '-') {
+            sign = '-';
+            num.erase(0, 1);
+        }
+        if (num.find('.') != -1) {
+            isfloat = true;
+            pos = num.find('.');
+            n1 = num.substr(0, pos);
+            n2 = num.substr(pos + 1);
+        }
+        if (os == ns) {
+            cout << "\nСистемы счисления совпадают.\n";
+            system("pause");
+            s();
+        }
+        if (os > 16 || ns > 16 || os < 2 || ns < 2) {
+            cout << "\nСистема не может быть больше 16 или меньше 2.\n";
+            system("pause");
+            s();
+        }
+        if (errorss) {
+            error;
+            system("pause");
+            continue;
+        }
+        int dcd;
+        int dcdf;
+        if (isfloat) {
+            
+            if (os != 10) {
+                dcd = x10(n1, os);
+                dcdf = x10float(n2, os);
+                if (ns == 10) {
+                    if (dcd != 0) {
+                        cout << "\nЧисло в " << ns << "-ичной системе счисления : " << sign << dcd << '.' << dcdf << "\n\n";
+                    }
+                }
+                else {
+                    cout << "\nЧисло в " << ns << "-ичной системе счисления : " << sign << fromdcdfloat(dcd, ns) << '.' << fromdcdfloat(dcdf, ns) << "\n\n";
+                }
+            }
+            else if (os == 10) {
+                cout << "\nЧисло в " << ns << "-ичной системе счисления : " << sign << fromdcdint(stoi(n1), ns) << '.' << fromdcdfloat(stoi(n2), ns) << "\n\n";
+            }
+
+        }
+        else {
+            if (os != 10) {
+                dcd = x10(num, os);
+                if (ns == 10) {
+                    if (dcd != 0) {
+                        cout << "\nЧисло в " << ns << "-ичной системе счисления : " << sign << dcd << "\n\n";
+                    }
+                }
+                else {
+                    cout << "\nЧисло в " << ns << "-ичной системе счисления : " << sign <<  fromdcdint(dcd, ns) << "\n\n";
+                }
+            }
+            else if (os == 10) {
+                cout << "\nЧисло в " << ns << "-ичной системе счисления : " << sign << fromdcdint(stoi(num), ns) << "\n\n";
+            }
+        }
+        system("pause");
+    }
+    
+}
+double inx10int(int l, int ns, int numbers[]) {
+    double a = 0;
+    int k = 0;
+    for (int i = l - 1; i > -1; i--) {
+        if (!(numbers[i] >= 0 && numbers[i] <= ns-1)) {
+            error();
+            errorss = true;
+            break;
+        }
+        a += numbers[i] * pow(ns, k);
+        k++;
+    }
+    return a;
+}
+double inx10float(int l, int ns, int numbers[]) {
+    double a = 0;
+    int k = -1;
+    for (int i = 0; i < l; i++) {
+        if (!(numbers[i] >= 0 && numbers[i] <= ns - 1)) {
+            error();
+            errorss = true;
+            break;
+        }
+        a += (double)numbers[i] * (double)pow(ns, k);
+        k--;
+    }
+    
+    string b = to_string(a);
+    while(true) {
+        if (b[size(b)-1] == '0') {
+            b.erase(size(b)-1);
+        }
+        else {
+            break;
+        }
+    }
+
+    a = stof(b) * pow(10, size(b) - 2);
+    return a;
+}
+
+double x10(string n, int os) {
+    int* numbers = new int[size(n)];
+    double a = 0;
+    int l = 0;
+    for (int i = 0; i < size(n); i++) {
+        l++;
+        if (n[i] == '0') {
+            numbers[i] = 0;
+        }
+        if (n[i] == '1') {
+            numbers[i] = 1;
+        }
+        if (n[i] == '2') {
+            numbers[i] = 2;
+        }
+        if (n[i] == '3') {
+            numbers[i] = 3;
+        }
+        if (n[i] == '4') {
+            numbers[i] = 4;
+        }
+        if (n[i] == '5') {
+            numbers[i] = 5;
+        }
+        if (n[i] == '6') {
+            numbers[i] = 6;
+        }
+        if (n[i] == '7') {
+            numbers[i] = 7;
+        }
+        if (n[i] == '8') {
+            numbers[i] = 8;
+        }
+        if (n[i] == '9') {
+            numbers[i] = 9;
+        }
+        if (n[i] == 'A') {
+            numbers[i] = 10;
+        }
+        if (n[i] == 'B') {
+            numbers[i] = 11;
+        }
+        if (n[i] == 'C') {
+            numbers[i] = 12;
+        }
+        if (n[i] == 'D') {
+            numbers[i] = 13;
+        }
+        if (n[i] == 'E') {
+            numbers[i] = 14;
+        }
+        if (n[i] == 'F') {
+            numbers[i] = 15;
+        }
+    }
+
+    a = inx10int(l, os, numbers);
+    return a;
+}
+
+double x10float(string n, int os) {
+    int* numbers = new int[size(n)];
+    double a = 0;
+    int l = 0;
+    for (int i = 0; i < size(n); i++) {
+        l++;
+        if (n[i] == '0') {
+            numbers[i] = 0;
+        }
+        if (n[i] == '1') {
+            numbers[i] = 1;
+        }
+        if (n[i] == '2') {
+            numbers[i] = 2;
+        }
+        if (n[i] == '3') {
+            numbers[i] = 3;
+        }
+        if (n[i] == '4') {
+            numbers[i] = 4;
+        }
+        if (n[i] == '5') {
+            numbers[i] = 5;
+        }
+        if (n[i] == '6') {
+            numbers[i] = 6;
+        }
+        if (n[i] == '7') {
+            numbers[i] = 7;
+        }
+        if (n[i] == '8') {
+            numbers[i] = 8;
+        }
+        if (n[i] == '9') {
+            numbers[i] = 9;
+        }
+        if (n[i] == 'A') {
+            numbers[i] = 10;
+        }
+        if (n[i] == 'B') {
+            numbers[i] = 11;
+        }
+        if (n[i] == 'C') {
+            numbers[i] = 12;
+        }
+        if (n[i] == 'D') {
+            numbers[i] = 13;
+        }
+        if (n[i] == 'E') {
+            numbers[i] = 14;
+        }
+        if (n[i] == 'F') {
+            numbers[i] = 15;
+        }
+    }
+
+    a = inx10float(l, os, numbers);
+    return a;
+}
+
+string fromdcdint(double dcd, int ns) {
+    int n = dcd;
+    string newnum = "";
+    while (n > 0) {
+        int k = n % ns;
+        if (k < 10) {
+            newnum += to_string(n % ns);
+        }
+        else if (k == 10) {
+            newnum += "A";
+        }
+        else if (k == 11) {
+            newnum += "B";
+        }
+        else if (k == 12) {
+            newnum += "C";
+        }
+        else if (k == 13) {
+            newnum += "D";
+        }
+        else if (k == 14) {
+            newnum += "E";
+        }
+        else if (k == 15) {
+            newnum += "F";
+        }
+        n /= ns;
+    }
+    reverse(newnum.begin(), newnum.end());
+    return newnum;
+}
+
+string fromdcdfloat(double dcd, int ns) {
+    int n = dcd;
+    //cout << endl << n << endl;
+    int l = size(to_string(n));
+    float okrug = ((n % 10) * pow(10, -l)) / 2;
+    float k = n * pow(10, -l);
+    for (int i = -1; i > -30; i--) {
+        if (pow(ns, i) <= okrug) {
+            okrug = -i;
+            break;
+        }
+    }
+    //okrug += 10;
+    string newnum = "";
+    int* numbers = new int[okrug];
+
+    for (int i = 0; i < okrug; i++) {
+        if (k != 0) {
+            string g = to_string(k * ns);
+            numbers[i] = stoi(g.substr(0, g.find('.')));
+            k = (k * ns) - numbers[i];
+        }
+        if (k == 0) {
+            numbers[i] = 0;
+        }
+    }
+
+    for (int i = 0; i < okrug; i++) {
+        if (numbers[i] < 10) {
+            newnum += to_string(numbers[i]);
+        }
+        else if (numbers[i]  == 10) {
+            newnum += "A";
+        }
+        else if (numbers[i] == 11) {
+            newnum += "B";
+        }
+        else if (numbers[i] == 12) {
+            newnum += "C";
+        }
+        else if (numbers[i] == 13) {
+            newnum += "D";
+        }
+        else if (numbers[i] == 14) {
+            newnum += "E";
+        }
+        else if (numbers[i] == 15) {
+            newnum += "F";
+        }
+    }
+    //cout << endl << newnum << endl;
+    //reverse(newnum.begin(), newnum.end());
+    return newnum;
+}
+
+
+int main()
+{
+    setlocale(LC_ALL, "RUS");
+    s();
+    
+}
