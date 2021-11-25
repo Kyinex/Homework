@@ -1,0 +1,31 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+	while (true) {
+		setlocale(LC_ALL, "RUS");
+		int m, i, c, x0;
+		system("cls");
+		cout << "Введите m : ";
+		cin >> m;
+		cout << "Введите i : ";
+		cin >> i;
+		cout << "Введите число c : ";
+		cin >> c;
+		cout << "Введите x0 : ";
+		cin >> x0;
+		int* rand = new int[i];
+		rand[0] = x0;
+		for (int j = 0; j < i; j++) {
+			rand[j + 1] = ((m * rand[j] + i) % c);
+		}
+		for (int j = 0; j < i; j++) {
+			cout << endl << rand[j] << endl;
+		}
+		
+
+		cout << "\n";
+		system("pause");
+	}
+}
