@@ -1,0 +1,93 @@
+#include <iostream>
+#include <string>
+#include <Windows.h>
+#include <math.h>
+using namespace std;
+
+int main() {
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+
+    system("mode con cols=130 lines=30");
+    int width = 130;
+    int height = 30;
+    float aspect = (float)width / height;
+    float pixAspect = 11.0f / 24.0f;
+    char grad[] = " -:Ж";
+    int gradSize = size(grad) - 2;
+    char* screen = new char[width * height + 1];
+    screen[width * height] = '\0';
+
+    for (int ab = 0; ab < 2; ab++) {
+        for (float frame = 0; frame < 6000; frame++) {
+            float anim;
+            int variant = 1;
+            //anim = round(((sin(frame / 200)) * 2) * 100) / 100;
+            anim = 1;
+            if (frame > 1188) {
+                anim = -round(((sin(frame / 200)) * 3) * 100) / 100; //Анимация
+            }
+            for (int i = 0; i < width; i++) {
+                for (int j = 0; j < height; j++) {
+
+                    float x = (float)i / width * 2.0f - 1.0f;
+                    float y = (float)j / height * 2.0f - 1.0f;
+
+                    x *= aspect * pixAspect; //подгонка под соотношение сторон экрана и пикселя(символа) 
+
+                    char pixel = ' ';
+                    float thicc = 0.3; //толщина линии
+                    float f;
+                    //float sinas = 1.5708 * 2.3;
+                    float sinas = 2.3; // Подгонка размера
+                    
+
+                    //функция
+                    f = y + (sin(x * sinas * anim)) / 3; variant = 1;
+                    //f = y + (sin(x * sinas + frame/100)) / 3; variant = 2; // функция со сдвигом фазы 
+
+                    //оси координат
+                    if (y == 0) pixel = '_';
+                    if (x == 0) pixel = '|';
+
+                    if (x < (frame - 600) / 200) {
+                        if (f < 0.3 * thicc && f > -0.3 * thicc) pixel = grad[1];
+                        if (f < 0.2 * thicc && f > -0.2 * thicc) pixel = grad[2];
+                        if (f < 0.1 * thicc && f > -0.1 * thicc) pixel = grad[3];
+                    }
+
+                    //квадтрат
+                    float s = 0.4;
+                    if ((((y > s && y < s + 0.1) || (y < -s && y > -s - 0.1)) && (x > -s && x < s)) && i % 3 == 0) pixel = '-';
+                    if ((((x > s && x < s + 0.03) || (x < -s && x > -s - 0.03)) && (y > -s && y < s)) && j % 3 == 0) pixel = '|';
+
+                    screen[i + j * width] = pixel;
+                }
+                if (variant == 1) {
+                    string name = "y = sin(x * (";
+                    if (anim > 0) {
+                        name += " " + to_string(anim).substr(0, 4);
+                    }
+                    else {
+                        name += to_string(anim).substr(0, 5);
+                    }
+                    //name = name.substr(4);
+                    name += "))";
+                    for (int i = 0; i < size(name); i++) {
+                        screen[i + 3] = name[i];
+                    }
+                }
+                if (variant == 2) {
+                    string name = "y = sin(x + ";
+                    name += to_string((int)frame);
+                    name += ")";
+                    for (int i = 0; i < size(name); i++) {
+                        screen[i + 3] = name[i];
+                    }
+                }
+            }
+            printf(screen);
+        }
+    }
+    getchar();
+}
