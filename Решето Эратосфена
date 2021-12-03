@@ -1,0 +1,63 @@
+#include <iostream>
+#include <string>
+#include <ctime>
+using namespace std;
+
+int numcheck() {
+    string a;
+    for (int k = 0; k < 1; k++) {
+        cin >> a;
+        bool d = true;
+        for (int i = 0; i < size(a); i++) {
+            if (!(isdigit((unsigned char)a[i]) || a[0] == '-')) {
+                cout << "Введите числовое значение : ";
+                k--;
+                cin.clear();
+                d = false;
+                break;
+            }
+        }
+        if (d) {
+            if (stoi(a) < 2) {
+                k--;
+                cout << "Введите числовое значение большее 2: ";
+                cin.clear();
+            }
+        }
+    }
+    return stoi(a);
+}
+
+int main()
+{
+    setlocale(LC_ALL, "RUS");
+    while (true) {
+        system("cls");
+        int n;
+        cout << "Введите число : ";
+        n = numcheck();
+        unsigned int start_time = clock();
+        int* numbers = new int[n-2];
+        for (int i = 2; i < n+1; i++) {
+            numbers[i-2] = i;
+        }
+        cout << "\n\n";
+        for (int i = 2; i < n+1; i++) {
+            for (int j = 2; j < n+1; j++) {
+                if (numbers[j - 2] != 0) {
+                    if (j % i == 0 && j != i) {
+                        numbers[j - 2] = 0;
+                    }
+                }
+            }
+        }
+        
+        for (int i = 0; i < n-1; i++) {
+            if(numbers[i] != 0) cout << "\n" << numbers[i];
+        }
+        unsigned int end_time = clock();
+        cout << "\n\nВремя: " << end_time - start_time << endl;
+        system("pause");
+    }
+}
+ 
