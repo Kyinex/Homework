@@ -1,0 +1,54 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int numcheck() {
+    string a;
+    for (int k = 0; k < 1; k++) {
+        cin >> a;
+        bool d = true;
+        for (int i = 0; i < size(a); i++) {
+            if (!(isdigit((unsigned char)a[i]) || a[0] == '-')) {
+                cout << "Введите числовое значение : ";
+                k--;
+                cin.clear();
+                d = false;
+                break;
+            }
+        }
+        if (d == true) {
+            if (stoi(a) == 0) {
+                k--;
+                cout << "Введите числовое значение не равное нулю : ";
+                cin.clear();
+            }
+        }
+    }
+    return abs(stoi(a));
+}
+
+int main()
+{
+    setlocale(LC_ALL, "RUS");
+    while (true) {
+        system("cls");
+        float a, b, min, dif;
+        cout << "Введите первое число: ";
+        a = numcheck();
+        cout << "Введите второе число: ";
+        b = numcheck();
+        if (a == b) {
+            cout << "\nНаибольший общий делитель : " << a << endl;
+        }
+        else {
+            if (a > b) { min = b; dif = a - b; }
+            else { min = a; dif = b - a; }
+            while (min != dif) {
+                if (min < dif) { dif -= min; }
+                else { a = min; min = dif; dif = a - dif; }
+            }
+            cout << "\nНаибольший общий делитель : " << dif << endl;
+        }
+        system("pause");
+    }
+}
